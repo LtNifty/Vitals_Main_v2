@@ -1,0 +1,38 @@
+# Config file
+
+# All modules start with default false
+FeatherFly: false
+#this is for sponge and emerald mods
+Movement: false
+Auctions: false
+World_time: false
+Blaze_case: false
+betterchain: false
+Buy_rank: false
+Fishing_bait: false
+bait_item: 'PUMPKIN_SEEDS'
+
+Ranks:
+    - Wanderer
+    - Citizen
+    - Noble
+    - Merchant
+    - Knight
+    - Baron
+    - Duke
+    - Chancellor
+    - Viceroy
+    - Guardian
+    - Avatar
+
+Sub_Ranks:
+    - Owner
+    - Admin
+    - Mod
+    - Trusted
+    - Sapphire
+    - Ruby
+    - Dragonstone
+    
+#No perms string
+noPerms: 'You do not have permission to run this command.'
