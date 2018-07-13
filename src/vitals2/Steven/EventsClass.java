@@ -148,8 +148,11 @@ public class EventsClass implements Listener {
 		int veteranTime = plugin.getConfig().getInt("veteran_time");
 		int playerTime = plugin.cfgm.getPlaytime().getInt(player.getName().toString() + ".playtime"); 
 		if (playerTime / 3600 >= veteranTime) {
+			if (!player.hasPermission("veteran.v"))
+			{
 			player.sendMessage(ChatColor.GOLD + "You played on the old 6d7 server for over 50 hours. You are now a Veteran!");
 			Main.permission.playerAddGroup("6d7", (OfflinePlayer) player, "Veteran");
+			}
 		}
 		else
 			return;
