@@ -99,3 +99,6 @@ permissions:
  drangonstone.v:
   description: donor 3
   default: false
+ veteran.v
+  description: 50 hours+ on old server
+  default: false
