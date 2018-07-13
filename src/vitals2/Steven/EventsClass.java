@@ -137,22 +137,22 @@ public class EventsClass implements Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		
+		int veteranTime = plugin.getConfig().getInt("veteran_time");
+		player.sendMessage("" + player.getName().toString());
+		int playerTime = plugin.cfgm.getPlaytime().getInt(player.getName().toString() + "." + "playtime"); 
+		if (playerTime / 3600 >= veteranTime) {
+			if (!player.hasPermission("veteran.v")) {
+			player.sendMessage(ChatColor.GOLD + "You played on the old 6d7 server for over 50 hours. You are now a Veteran!");
+			Main.permission.playerAddGroup("6d7", (OfflinePlayer) player, "Veteran");
+			}
+		}
+		
 		if (plugin.getConfig().getBoolean("Play_time")) {
 			if (!(plugin.cfgm.getPlayers().contains(player.getUniqueId().toString()))) {
 				plugin.cfgm.getPlayers().set(player.getUniqueId().toString() + ".playTime", 0);
 			}
 			plugin.cfgm.savePlayers();
 			return;
-		}
-		
-		int veteranTime = plugin.getConfig().getInt("veteran_time");
-		int playerTime = plugin.cfgm.getPlaytime().getInt(player.getName().toString() + ".playtime"); 
-		if (playerTime / 3600 >= veteranTime) {
-			if (!player.hasPermission("veteran.v"))
-			{
-			player.sendMessage(ChatColor.GOLD + "You played on the old 6d7 server for over 50 hours. You are now a Veteran!");
-			Main.permission.playerAddGroup("6d7", (OfflinePlayer) player, "Veteran");
-			}
 		}
 		else
 			return;
