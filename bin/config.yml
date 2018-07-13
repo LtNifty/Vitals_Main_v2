@@ -12,6 +12,7 @@ Buy_rank: false
 Play_time: false
 2hr_citizen: false
 wanderer_time: 120
+veteran_time: 24
 
 Ranks:
     - Wanderer

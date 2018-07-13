@@ -63,6 +63,9 @@ public class Main extends JavaPlugin {
 		cfgm.setup();
 		cfgm.savePlayers();
 		cfgm.reloadPlayers();
+		cfgm.getPlaytime();
+		cfgm.savePlaytime();
+		cfgm.reloadPlaytime();
 	}
 	
 	public void playerInfo() {

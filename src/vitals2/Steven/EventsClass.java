@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
@@ -142,6 +143,13 @@ public class EventsClass implements Listener {
 			}
 			plugin.cfgm.savePlayers();
 			return;
+		}
+		
+		int veteranTime = plugin.getConfig().getInt("veteran_time");
+		int playerTime = plugin.cfgm.getPlaytime().getInt(player.getName().toString() + ".playtime"); 
+		if (playerTime / 3600 >= veteranTime) {
+			player.sendMessage(ChatColor.GOLD + "You played on the old 6d7 server for over 50 hours. You are now a Veteran!");
+			Main.permission.playerAddGroup("6d7", (OfflinePlayer) player, "Veteran");
 		}
 		else
 			return;
