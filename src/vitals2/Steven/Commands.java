@@ -125,7 +125,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 		hr = time / 3600;
 		min = (time % 3600) / 60;
 		sec = time % 60;
-		comb = String.format("%d:%d:%d", hr, min, sec);
+		comb = String.format("%d:%2d:%2d", hr, min, sec);
 		player.sendMessage(ChatColor.GOLD + "Your current playtime is: " + comb);
 	}
 
