@@ -14,7 +14,12 @@ commands:
  rankup:
   usage: /<command>
   description: allows the player to rank to the next rank
-  
+ v_reload:
+  usage: /<command>
+  description: reloads configs and player data
+ playtime:
+  usage: /<command>
+  description: shows the players playtime
 permissions:
  featherfly.v:
   description: Allows featherfly

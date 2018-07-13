@@ -19,6 +19,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -131,25 +132,20 @@ public class EventsClass implements Listener {
 			return;
 	}
 	
-	/*@EventHandler
+	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
-		
 		Player player = event.getPlayer();
-		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
-		BookMeta bookmeta = (BookMeta) book.getItemMeta();
-		ArrayList<String> pages = new ArrayList<String>();
 		
-		bookmeta.setAuthor(ChatColor.RED + "6d7");
-		bookmeta.setTitle(ChatColor.RED + "Implemented features.");
-		
-		pages.add(0,ChatColor.BLACK + "\tImplimented: \nFeatherfly, MytheralChain, FastEmerald, BouncySponge, Announce Day and Night (for future things)");
-		pages.add(1,ChatColor.BLACK + "\tThings to add \nDailyRewards \nPermissions \nChatSymbols \nZones");
-		pages.add(2,ChatColor.BLACK + "\tFuture additions \nArena \nGuilds (redone) \nHeroism \nCustomSideBar (to display info related to server)");
-		bookmeta.setPages(pages);
-		book.setItemMeta(bookmeta);
-		
-		player.getInventory().addItem(book);
-	}*/
+		if (plugin.getConfig().getBoolean("Play_time")) {
+			if (!(plugin.cfgm.getPlayers().contains(player.getUniqueId().toString()))) {
+				plugin.cfgm.getPlayers().set(player.getUniqueId().toString() + ".playTime", 0);
+			}
+			plugin.cfgm.savePlayers();
+			return;
+		}
+		else
+			return;
+	}
 	
 	@EventHandler
 	public void Featherfly(PlayerInteractEvent event) {

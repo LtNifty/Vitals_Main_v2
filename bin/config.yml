@@ -9,8 +9,9 @@ World_time: false
 Blaze_case: false
 betterchain: false
 Buy_rank: false
-Fishing_bait: false
-bait_item: 'PUMPKIN_SEEDS'
+Play_time: false
+2hr_citizen: false
+wanderer_time: 120
 
 Ranks:
     - Wanderer

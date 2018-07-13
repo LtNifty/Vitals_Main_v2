@@ -22,6 +22,9 @@ public class Main extends JavaPlugin {
 	public static Economy economy = null;
 	public static Chat chat = null;
 	public static Permission permission = null;
+	public ConfigManager cfgm;
+	public playerCount players;
+	public EconomyHandler ecoH;
 	//Logger log = getLogger();
 	//private String languagefile = global("language") + ".yml";
 	//private YamlConfiguration local = YamlConfiguration.loadConfiguration(new File(getDataFolder(), languagefile));	
@@ -30,12 +33,16 @@ public class Main extends JavaPlugin {
 		getCommand(commands.cmd1).setExecutor(commands);
 		getCommand(commands.cmd2).setExecutor(commands);
 		getCommand(commands.cmd3).setExecutor(commands);
+		getCommand(commands.cmd4).setExecutor(commands);
+		getCommand(commands.cmd5).setExecutor(commands);
 		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Vitals has be enabled.");
 		getServer().getPluginManager().registerEvents(new EventsClass(this), this);
 		loadConfig();
+		loadConfigManager();
 		timer();
 		getWorldGuard();
 		setupEconomy();
+		playerInfo();
 		//setupChat();
 		setupPermissions();
 		//writeConfig();
@@ -49,6 +56,18 @@ public class Main extends JavaPlugin {
 	public void loadConfig() {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
+	}
+	
+	public void loadConfigManager() {
+		cfgm = new ConfigManager();
+		cfgm.setup();
+		cfgm.savePlayers();
+		cfgm.reloadPlayers();
+	}
+	
+	public void playerInfo() {
+		players = new playerCount();
+		players.playtime();
 	}
 	
 	public void timer() {
@@ -66,6 +85,7 @@ public class Main extends JavaPlugin {
 				Auction.timer();
 				
 				if (Ticks % 20 == 0) { //every 1 seconds
+					players.playtime();
 				}
 				if (Ticks % 200 == 0) { //every 10 seconds
 					if (getConfig().getBoolean("FeatherFly"))

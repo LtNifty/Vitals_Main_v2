@@ -1,9 +1,5 @@
 package vitals2.Steven;
 
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,6 +23,8 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 	public String cmd1 = "startauction";
 	public String cmd2 = "bid";
 	public String cmd3 = "rankup";
+	public String cmd4 = "V_reload";
+	public String cmd5 = "playtime";
 	
 	public String noPerms = "You do not have permission to run this command.";
 	
@@ -102,6 +100,15 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 				else
 					return true;
 			}
+			if (cmd.getName().equalsIgnoreCase(cmd4)) {
+				plugin.cfgm.reloadPlayers();
+				plugin.reloadConfig();
+				return true;
+			}
+			if (cmd.getName().equalsIgnoreCase(cmd5)) {
+				getTime((Player) sender);
+				return true;
+			}
 		}
 		else {
 			sender.sendMessage(ChatColor.RED + "Only players can use this command.");
@@ -110,7 +117,18 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 		return false;		
 	}
 	
-	String unicodeList() {
+	private void getTime(Player player) {
+		int hr, min, sec, time;
+		String comb = null;
+		time = plugin.cfgm.getPlayers().getInt(player.getUniqueId().toString() + ".playTime");
+		hr = time / 3600;
+		min = (time % 3600) / 60;
+		sec = time % 60;
+		comb = String.format("%d:%d:%d", hr, min, sec);
+		player.sendMessage(ChatColor.GOLD + "Your current playtime is: " + comb);
+	}
+
+	/*String unicodeList() {
     	StringBuilder sb = new StringBuilder();
     	for (String key : unicodes.keySet()) { 
     		sb.append(unicize(key)); 
@@ -147,6 +165,6 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 		mat.appendTail(buf); s = buf.toString();
 		for (String key : unicodes.keySet()) s = s.replaceAll(key, Character.toString((char) unicodes.get(key).intValue()));
 		return s;
-	}
+	}*/
 
 }
