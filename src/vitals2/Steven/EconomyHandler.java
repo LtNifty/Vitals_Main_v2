@@ -48,12 +48,13 @@ public class EconomyHandler {
 	
 	public static void buyRank(Player player) {
 		String test = getGroup(player);
+		double balance = Main.economy.getBalance(player);
 		switch(test) {
 			case "Wanderer":
 				player.sendMessage(ChatColor.RED + "You do not rank this way.");
 				break;
 			case "Citizen":
-				if(Main.economy.getBalance(player) >= 10000) {
+				if(balance >= 10000) {
 					player.sendMessage(ChatColor.GOLD + "You are now a Noble!");
 					Main.economy.withdrawPlayer(player, 10000);
 					Main.permission.playerAddGroup("6d7", (OfflinePlayer)player, "Noble");

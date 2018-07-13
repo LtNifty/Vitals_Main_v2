@@ -101,9 +101,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 					return true;
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd4)) {
-				plugin.cfgm.reloadPlayers();
-				plugin.reloadConfig();
-				plugin.cfgm.reloadPlaytime();
+				reloadAllCfg();
 				return true;
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd5)) {
@@ -117,7 +115,13 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 		}
 		return false;		
 	}
-	
+
+	public void reloadAllCfg() {
+		plugin.cfgm.reloadPlayers();
+		plugin.reloadConfig();
+		plugin.cfgm.reloadPlaytime();
+	}
+
 	private void getTime(Player player) {
 		int hr, min, sec, time;
 		String comb = null;

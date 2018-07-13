@@ -37,14 +37,14 @@ public class Main extends JavaPlugin {
 		getCommand(commands.cmd5).setExecutor(commands);
 		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Vitals has be enabled.");
 		getServer().getPluginManager().registerEvents(new EventsClass(this), this);
+		setupEconomy();
+		setupPermissions();
 		loadConfig();
 		loadConfigManager();
 		timer();
 		getWorldGuard();
-		setupEconomy();
 		playerInfo();
 		//setupChat();
-		setupPermissions();
 		//writeConfig();
 		//writeLanguageFile();
 	}
