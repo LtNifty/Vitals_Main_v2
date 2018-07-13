@@ -35,6 +35,7 @@ Sub_Ranks:
     - Sapphire
     - Ruby
     - Dragonstone
+    - Veteran
     
 #No perms string
 noPerms: 'You do not have permission to run this command.'
