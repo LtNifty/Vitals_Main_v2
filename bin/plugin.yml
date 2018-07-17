@@ -102,3 +102,6 @@ permissions:
  veteran.v:
   description: 50 hours+ on old server
   default: false
+ consumeemmy.v:
+  description: consume emerald for temporary speed buff
+  default: false

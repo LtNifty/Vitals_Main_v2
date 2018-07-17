@@ -4,6 +4,7 @@
 FeatherFly: false
 #this is for sponge and emerald mods
 Movement: false
+Consume_emmy: false
 Auctions: false
 World_time: false
 Blaze_case: false

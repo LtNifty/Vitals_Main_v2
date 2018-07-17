@@ -219,6 +219,25 @@ public class EventsClass implements Listener {
 			return;
 	}
 	
+	@EventHandler
+	public void consumeEmmy(PlayerInteractEvent event) {
+		
+		Player player = event.getPlayer();
+		Action action = event.getAction();
+		ItemStack held = player.getInventory().getItemInMainHand();
+		
+		if (player.hasPermission("consumeemmy.v")) {
+			if (plugin.getConfig().getBoolean("Consume_emmy")) {
+				if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK) && held.getType().equals(Material.EMERALD)) {
+					held.setAmount(held.getAmount() - 1);
+					player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 5), true);
+					player.sendMessage("Hasten your way on wind-touched heels!");
+					return;
+				}
+			}
+		}
+	}
+	
 	/*@EventHandler
 	public void zoneMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
