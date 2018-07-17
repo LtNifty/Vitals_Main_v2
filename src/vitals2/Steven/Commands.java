@@ -102,6 +102,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd4)) {
 				reloadAllCfg();
+				plugin.reloadConfig();
 				return true;
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd5)) {
