@@ -7,7 +7,9 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
@@ -130,6 +132,34 @@ public class EventsClass implements Listener {
 		}
 		else
 			return;
+	}
+	
+	@EventHandler
+	public void elevator(PlayerMoveEvent event) {
+
+		Player player = event.getPlayer();
+		Material standingOn = event.getTo().getBlock().getRelative(BlockFace.DOWN).getType();
+		
+		if (plugin.getConfig().getBoolean("elevator")) {
+			if (standingOn == Material.BEDROCK) {
+				if (player.isSneaking()) {
+					for (int i = (int) player.getLocation().getY(); i > 0; i--) {
+						if (((Block) player.getLocation()).getRelative(0, i, 0).getType().equals(Material.BEDROCK)) {
+							player.teleport(new Location(player.getWorld(), player.getLocation().getX(), i, player.getLocation().getZ()));
+							player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "Woosh!");
+						}
+					}
+				}
+				else if (player.getLocation().subtract(0,1,0).getBlock().getType().equals(Material.AIR) && player.isFlying() == false) {
+					for (int i = (int) player.getLocation().getY(); i < 256; i++) {
+						if (((Block) player.getLocation()).getRelative(0, i, 0).getType().equals(Material.BEDROCK)) {
+							player.teleport(new Location(player.getWorld(), player.getLocation().getX(), i, player.getLocation().getZ()));
+							player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "Woosh!");
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	@EventHandler
