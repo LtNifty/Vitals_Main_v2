@@ -231,13 +231,15 @@ public class EventsClass implements Listener {
 			if (plugin.getConfig().getBoolean("Consume_emmy")) {
 				if ((action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) && held.getType() == Material.EMERALD) {
 					held.setAmount(held.getAmount() - 1);
-					player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 60, 5), true);
+					player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 5), true);
 					player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "Hasten your way on wind-touched heels!");
 					return;
 				}
 			}
 		}
 	}
+	
+	
 	
 	/*@EventHandler
 	public void zoneMove(PlayerMoveEvent event) {
