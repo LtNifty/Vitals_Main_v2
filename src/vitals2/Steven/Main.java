@@ -1,10 +1,18 @@
 package vitals2.Steven;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
@@ -25,6 +33,7 @@ public class Main extends JavaPlugin {
 	public ConfigManager cfgm;
 	public playerCount players;
 	public EconomyHandler ecoH;
+	public List<UUID> emmy = new ArrayList<>();
 	//Logger log = getLogger();
 	//private String languagefile = global("language") + ".yml";
 	//private YamlConfiguration local = YamlConfiguration.loadConfiguration(new File(getDataFolder(), languagefile));	
@@ -90,6 +99,10 @@ public class Main extends JavaPlugin {
 				if (Ticks % 20 == 0) { //every 1 seconds
 					players.playtime();
 				}
+				
+				if (Ticks % 40 == 0) {
+					emmyRemove();
+				}
 				if (Ticks % 200 == 0) { //every 10 seconds
 					if (getConfig().getBoolean("FeatherFly"))
 						FeatherFly.itemRemove();
@@ -154,4 +167,22 @@ public class Main extends JavaPlugin {
         }
         return (permission != null);
     }
+	
+	public void emmyRemove() {
+		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+			if (emmy.contains(player.getUniqueId())) {
+				if (player.getInventory().contains(Material.EMERALD)) {
+					for (ItemStack item : player.getInventory().getContents()) {
+						if (item.getType().equals(Material.EMERALD))
+							item.setAmount(item.getAmount() - 1);
+					}
+				}
+				else {
+					emmy.remove(player.getUniqueId());
+					player.removePotionEffect(PotionEffectType.SPEED);
+					return;
+				}
+			}
+		}
+	}
 }

@@ -260,16 +260,22 @@ public class EventsClass implements Listener {
 		if (player.hasPermission("consumeemmy.v")) {
 			if (plugin.getConfig().getBoolean("Consume_emmy")) {
 				if ((action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) && held.getType() == Material.EMERALD) {
-					held.setAmount(held.getAmount() - 1);
-					player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 5), true);
-					player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "Hasten your way on wind-touched heels!");
-					return;
+					if (plugin.emmy.contains(player.getUniqueId())) {
+						plugin.emmy.remove(player.getUniqueId());
+						return;
+					}
+					
+					else {
+						plugin.emmy.add(player.getUniqueId());
+						player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "Hasten your way on wind-touched heels!");
+						player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 3), true);
+						held.setAmount(held.getAmount() - 1);
+						return;
+					}
 				}
 			}
 		}
 	}
-	
-	
 	
 	/*@EventHandler
 	public void zoneMove(PlayerMoveEvent event) {
