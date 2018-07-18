@@ -268,7 +268,7 @@ public class EventsClass implements Listener {
 					else {
 						plugin.emmy.add(player.getUniqueId());
 						player.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "Hasten your way on wind-touched heels!");
-						player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 3), true);
+						player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 2), true);
 						held.setAmount(held.getAmount() - 1);
 						return;
 					}

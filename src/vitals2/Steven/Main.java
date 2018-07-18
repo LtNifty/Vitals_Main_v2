@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -46,11 +47,11 @@ public class Main extends JavaPlugin {
 		getCommand(commands.cmd5).setExecutor(commands);
 		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Vitals has be enabled.");
 		getServer().getPluginManager().registerEvents(new EventsClass(this), this);
+		timer();
 		setupEconomy();
 		setupPermissions();
 		loadConfig();
 		loadConfigManager();
-		timer();
 		getWorldGuard();
 		playerInfo();
 		//setupChat();
@@ -97,11 +98,11 @@ public class Main extends JavaPlugin {
 				Auction.timer();
 				
 				if (Ticks % 20 == 0) { //every 1 seconds
-					players.playtime();
+					//players.playtime();
 				}
 				
-				if (Ticks % 40 == 0) {
-					emmyRemove();
+				if (Ticks % 39 == 0) {
+						emmyRemove();
 				}
 				if (Ticks % 200 == 0) { //every 10 seconds
 					if (getConfig().getBoolean("FeatherFly"))
@@ -173,8 +174,11 @@ public class Main extends JavaPlugin {
 			if (emmy.contains(player.getUniqueId())) {
 				if (player.getInventory().contains(Material.EMERALD)) {
 					for (ItemStack item : player.getInventory().getContents()) {
-						if (item.getType().equals(Material.EMERALD))
+						if (item.getType().equals(Material.EMERALD)) {
 							item.setAmount(item.getAmount() - 1);
+							player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 2), true);
+							return;
+						}
 					}
 				}
 				else {
