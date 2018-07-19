@@ -174,7 +174,7 @@ public class Main extends JavaPlugin {
 			if (emmy.contains(player.getUniqueId())) {
 				if (player.getInventory().contains(Material.EMERALD)) {
 					for (ItemStack item : player.getInventory().getContents()) {
-						if (item.getType().equals(Material.EMERALD)) {
+						if (item != null && item.getType().equals(Material.EMERALD)) {
 							item.setAmount(item.getAmount() - 1);
 							player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 2), true);
 							return;
