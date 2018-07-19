@@ -22,6 +22,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -134,10 +135,33 @@ public class EventsClass implements Listener {
 	}
 	
 	@EventHandler
-	public void elevator(PlayerMoveEvent event) {
+	public void elevatorUp(PlayerMoveEvent event) {
 
 		Player player = event.getPlayer();
 		Material standingOn = event.getTo().getBlock().getRelative(BlockFace.DOWN).getType();
+		Location loc = player.getEyeLocation().add(0,1,0);
+		
+		if (plugin.getConfig().getBoolean("elevator")) {
+			if (standingOn == Material.BEDROCK) {
+				if (player.getLocation().subtract(0,1,0).getBlock().getType().equals(Material.AIR) && player.isFlying() == false) {
+					while (loc.getY() < 256) {
+						if (loc.getBlock().getType() == Material.BEDROCK) {
+							player.teleport(loc.add(0,1,0));
+							player.sendMessage("up");
+							return;
+						}
+						loc.add(0,1,0);
+					}
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void elevatorDown(PlayerToggleSneakEvent event) {
+
+		Player player = event.getPlayer();
+		Material standingOn = player.getEyeLocation().subtract(0,2,0).getBlock().getType();
 		Location loc = player.getEyeLocation().add(0,1,0);
 		
 		if (plugin.getConfig().getBoolean("elevator")) {
@@ -151,16 +175,6 @@ public class EventsClass implements Listener {
 							return;
 						}
 						loc.subtract(0,1,0);
-					}
-				}
-				else if (player.getLocation().subtract(0,1,0).getBlock().getType().equals(Material.AIR) && player.isFlying() == false) {
-					while (loc.getY() < 256) {
-						if (loc.getBlock().getType() == Material.BEDROCK) {
-							player.teleport(loc.add(0,1,0));
-							player.sendMessage("up");
-							return;
-						}
-						loc.add(0,1,0);
 					}
 				}
 			}
