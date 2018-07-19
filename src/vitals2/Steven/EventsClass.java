@@ -166,7 +166,7 @@ public class EventsClass implements Listener {
 		
 		if (plugin.getConfig().getBoolean("elevator")) {
 			if (standingOn == Material.BEDROCK) {
-				if (player.isSneaking()) {
+				if (player.isSneaking() && player.isFlying() == false) {
 					loc.subtract(0,4,0);
 					while (loc.getY() > 0) {
 						if (loc.getBlock().getType() == Material.BEDROCK) {
