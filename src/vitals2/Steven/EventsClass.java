@@ -168,7 +168,7 @@ public class EventsClass implements Listener {
 			if (standingOn == Material.BEDROCK) {
 				if (player.isSneaking() && player.isFlying() == false) {
 					loc.subtract(0,4,0);
-					while (loc.getY() > 0) {
+					while (loc.getY() > 30) {
 						if (loc.getBlock().getType() == Material.BEDROCK) {
 							player.teleport(loc.add(0,1,0));
 							player.sendMessage("down");
