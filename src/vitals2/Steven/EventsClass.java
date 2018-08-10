@@ -95,7 +95,7 @@ public class EventsClass implements Listener {
 					if (numChainmail > 0) { 	//if the player has more then one piece of armor
 						player.sendMessage(ChatColor.AQUA + "Your chainmail armor reduced the damage taken by " + Math.round(100*(1 - damageFactor)) + "%!");
 						event.setDamage((int) Math.round(damageFactor * event.getDamage()));
-						player.sendMessage("damageFactor = " + damageFactor);
+						//player.sendMessage("damageFactor = " + damageFactor);
 						return;
 					}
 					else
@@ -193,13 +193,15 @@ public class EventsClass implements Listener {
 		if (playerTime / 3600 >= veteranTime) {
 			if (!player.hasPermission("veteran.v")) {
 			player.sendMessage(ChatColor.GOLD + "You played on the old 6d7 server for over 50 hours. You are now a Veteran!");
-			Main.permission.playerAddGroup(player, "Veteran");
+			//Main.permission.playerAddGroup(player, "Veteran");
+			plugin.cfgm.getPlayers().set(player.getUniqueId().toString() + ".hasVet", true);
 			}
 		}
 		
 		if (plugin.getConfig().getBoolean("Play_time")) {
 			if (!(plugin.cfgm.getPlayers().contains(player.getUniqueId().toString()))) {
 				plugin.cfgm.getPlayers().set(player.getUniqueId().toString() + ".playTime", 0);
+				plugin.cfgm.getPlayers().set(player.getUniqueId().toString() + ".hasVet", false);
 			}
 			plugin.cfgm.savePlayers();
 			return;

@@ -58,6 +58,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Noble!");
 					Main.economy.withdrawPlayer(player, 10000);
 					Main.permission.playerAddGroup("6d7", (OfflinePlayer)player, "Noble");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $10,000 to rank up.");
@@ -68,6 +69,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Merchant!");
 					Main.economy.withdrawPlayer(player, 25000);
 					Main.permission.playerAddGroup(player, "Merchant");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $25,000 to rank up.");
@@ -78,6 +80,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Knight!");
 					Main.economy.withdrawPlayer(player, 50000);
 					Main.permission.playerAddGroup(player, "Knight");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $50,000 to rank up.");
@@ -88,6 +91,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Baron!");
 					Main.economy.withdrawPlayer(player, 100000);
 					Main.permission.playerAddGroup(player, "Baron");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $100,000 to rank up.");
@@ -98,6 +102,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Duke!");
 					Main.economy.withdrawPlayer(player, 250000);
 					Main.permission.playerAddGroup(player, "Duke");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $250,000 to rank up.");
@@ -108,6 +113,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Chancellor!");
 					Main.economy.withdrawPlayer(player, 500000);
 					Main.permission.playerAddGroup(player, "Chancellor");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $500,000 to rank up.");
@@ -118,6 +124,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Viceroy!");
 					Main.economy.withdrawPlayer(player, 1000000);
 					Main.permission.playerAddGroup(player, "Viceroy");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $1,000,000 to rank up.");
@@ -128,6 +135,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Guardian!");
 					Main.economy.withdrawPlayer(player, 2500000);
 					Main.permission.playerAddGroup(player, "Guardian");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $2,500,000 to rank up.");
@@ -138,6 +146,7 @@ public class EconomyHandler {
 					player.sendMessage(ChatColor.GOLD + "You are now a Avatar!");
 					Main.economy.withdrawPlayer(player, 10000000);
 					Main.permission.playerAddGroup(player, "Avatar");
+					Main.permission.playerRemoveGroup(player, test);
 				}
 				else {
 					player.sendMessage(ChatColor.RED + "You do not have enough money to rank up. You need $10,000,000 to rank up.");

@@ -6,6 +6,6 @@
 	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/worldedit-bukkit-6.1.7.3.jar"/>
 	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/worldguard-6.2.1.jar"/>
 	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/Vault.jar"/>
-	<classpathentry kind="lib" path="D:/Docs/Desktop/java dev/developmentserver/plugins/EssentialsX-2.15.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/Docs/Documents/GitHub/EssentialsX-2.15.0.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
