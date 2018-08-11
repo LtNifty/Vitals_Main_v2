@@ -167,6 +167,84 @@ public class Inv implements Listener {
 		player.openInventory(I);
 	}
 	
+	public void confirmGUI(Player player) {
+		String name = "&d&lConfirmation Menu";
+		Inventory I = plugin.getServer().createInventory(null, 54, ChatColor.translateAlternateColorCodes('&', name));
+		
+		ItemStack Y = new ItemStack(Material.EMERALD_BLOCK, 1);
+		ItemStack e = new ItemStack(Material.STICK, 1);
+		ItemStack N = new ItemStack(Material.REDSTONE_BLOCK, 1);
+		
+		ItemMeta YMeta = Y.getItemMeta();
+		YMeta.setDisplayName(ChatColor.GREEN + "COMFIRM");
+		Y.setItemMeta(YMeta);
+		
+		ItemMeta eMeta = e.getItemMeta();
+		eMeta.setDisplayName("");
+		e.setItemMeta(eMeta);
+		
+		ItemMeta NMeta = N.getItemMeta();
+		NMeta.setDisplayName(ChatColor.RED + "CANCEL");
+		N.setItemMeta(NMeta);
+		
+		I.setItem(0, Y);
+		I.setItem(1, Y);
+		I.setItem(2, Y);
+		I.setItem(3, Y);
+		I.setItem(4, e);
+		I.setItem(5, N);
+		I.setItem(6, N);
+		I.setItem(7, N);
+		I.setItem(8, N);
+		I.setItem(9, Y);
+		I.setItem(10, Y);
+		I.setItem(11, Y);
+		I.setItem(12, Y);
+		I.setItem(13, e);
+		I.setItem(14, N);
+		I.setItem(15, N);
+		I.setItem(16, N);
+		I.setItem(17, N);
+		I.setItem(18, Y);
+		I.setItem(19, Y);
+		I.setItem(20, Y);
+		I.setItem(21, Y);
+		I.setItem(22, e);
+		I.setItem(23, N);
+		I.setItem(24, N);
+		I.setItem(25, N);
+		I.setItem(26, N);
+		I.setItem(27, Y);
+		I.setItem(28, Y);
+		I.setItem(29, Y);
+		I.setItem(30, Y);
+		I.setItem(31, e);
+		I.setItem(32, N);
+		I.setItem(33, N);
+		I.setItem(34, N);
+		I.setItem(35, N);
+		I.setItem(36, Y);
+		I.setItem(37, Y);
+		I.setItem(38, Y);
+		I.setItem(39, Y);
+		I.setItem(40, e);
+		I.setItem(41, N);
+		I.setItem(42, N);
+		I.setItem(43, N);
+		I.setItem(44, N);
+		I.setItem(45, Y);
+		I.setItem(46, Y);
+		I.setItem(47, Y);
+		I.setItem(48, Y);
+		I.setItem(49, e);
+		I.setItem(50, N);
+		I.setItem(51, N);
+		I.setItem(52, N);
+		I.setItem(53, N);
+		
+		player.openInventory(I);
+	}
+	
 	public String getCost(int slot, int clickSlot) {
 		List<Integer> rankCost = plugin.getConfig().getIntegerList("rank_cost");
 		int cost = 0;
