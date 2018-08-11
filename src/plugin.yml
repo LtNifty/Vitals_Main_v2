@@ -11,7 +11,7 @@ commands:
  bid:
   usage: /<command> <amount>
   description: increments bid for current auction
- rankup:
+ buyrank:
   usage: /<command>
   description: allows the player to rank to the next rank
  v_reload:

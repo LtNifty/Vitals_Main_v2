@@ -22,7 +22,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 	//list of all commands
 	public String cmd1 = "startauction";
 	public String cmd2 = "bid";
-	public String cmd3 = "rankup";
+	public String cmd3 = "buyrank";
 	public String cmd4 = "V_reload";
 	public String cmd5 = "playtime";
 	
@@ -93,8 +93,9 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd3)) {
 				if (plugin.getConfig().getBoolean("Buy_rank")) {
-					Player send = (Player)sender;
-					EconomyHandler.buyRank(send);
+					Inv I = new Inv();
+					I.BuyrankInventory((Player) sender);
+					
 					return true;
 				}
 				else
