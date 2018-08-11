@@ -1,6 +1,7 @@
 package vitals2.Steven;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,7 +18,18 @@ public class Inv implements Listener {
 	private Main plugin = Main.getPlugin(Main.class);
 	
 	public void BuyrankInventory(Player player) {
-		String name = "&a&lBuyrank Menu";
+		
+		int slot = 100;
+		
+		List<String> rankList = plugin.getConfig().getStringList("Ranks");
+		for (int i = 0; i < rankList.size(); i++) {
+			if (rankList.get(i).equalsIgnoreCase(getGroup(player))) {
+				slot = i;
+				break;
+			}
+		}
+		
+		String name = "&d&lBuyrank Menu";
 		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name));
 		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
 		ItemMeta eMeta = empty.getItemMeta();
@@ -38,7 +50,7 @@ public class Inv implements Listener {
 		ItemMeta nobleMeta = noble.getItemMeta();
 		nobleMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&eNoble"));
 		ArrayList<String> nobleLore = new ArrayList<String>();
-		nobleLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $10,000"));
+		nobleLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,2)));
 		nobleMeta.setLore(nobleLore);
 		if (getGroup(player).equalsIgnoreCase("Noble")) {
 			nobleMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -50,7 +62,7 @@ public class Inv implements Listener {
 		ItemMeta merchantMeta = merchant.getItemMeta();
 		merchantMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6Merchant"));
 		ArrayList<String> merchantLore = new ArrayList<String>();
-		merchantLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $25,000"));
+		merchantLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,3)));
 		merchantMeta.setLore(merchantLore);
 		if (getGroup(player).equalsIgnoreCase("Merchant")) {
 			merchantMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -62,7 +74,7 @@ public class Inv implements Listener {
 		ItemMeta knightMeta = knight.getItemMeta();
 		knightMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&2Knight"));
 		ArrayList<String> knightLore = new ArrayList<String>();
-		knightLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $50,000"));
+		knightLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,4)));
 		knightMeta.setLore(knightLore);
 		if (getGroup(player).equalsIgnoreCase("Knight")) {
 			knightMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -74,7 +86,7 @@ public class Inv implements Listener {
 		ItemMeta baronMeta = baron.getItemMeta();
 		baronMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aBaron"));
 		ArrayList<String> baronLore = new ArrayList<String>();
-		baronLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $100,000"));
+		baronLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,5)));
 		baronMeta.setLore(baronLore);
 		if (getGroup(player).equalsIgnoreCase("Baron")) {
 			baronMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -86,7 +98,7 @@ public class Inv implements Listener {
 		ItemMeta dukeMeta = duke.getItemMeta();
 		dukeMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5Duke"));
 		ArrayList<String> dukeLore = new ArrayList<String>();
-		dukeLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $250,000"));
+		dukeLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,6)));
 		dukeMeta.setLore(dukeLore);
 		if (getGroup(player).equalsIgnoreCase("Duke")) {
 			dukeMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -98,7 +110,7 @@ public class Inv implements Listener {
 		ItemMeta chancellorMeta = chancellor.getItemMeta();
 		chancellorMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&3Chancellor"));
 		ArrayList<String> chancellorLore = new ArrayList<String>();
-		chancellorLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $500,000"));
+		chancellorLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,7)));
 		chancellorMeta.setLore(chancellorLore);
 		if (getGroup(player).equalsIgnoreCase("Chancellor")) {
 			chancellorMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -110,7 +122,7 @@ public class Inv implements Listener {
 		ItemMeta viceroyMeta = viceroy.getItemMeta();
 		viceroyMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bViceroy"));
 		ArrayList<String> viceroyLore = new ArrayList<String>();
-		viceroyLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $1,000,000"));
+		viceroyLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,8)));
 		viceroyMeta.setLore(viceroyLore);
 		if (getGroup(player).equalsIgnoreCase("Viceroy")) {
 			viceroyMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -122,7 +134,7 @@ public class Inv implements Listener {
 		ItemMeta guardianMeta = guardian.getItemMeta();
 		guardianMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&1Guardian"));
 		ArrayList<String> guardianLore = new ArrayList<String>();
-		guardianLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $2,500,000"));
+		guardianLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,9)));
 		guardianMeta.setLore(guardianLore);
 		if (getGroup(player).equalsIgnoreCase("Guardian")) {
 			guardianMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -134,7 +146,7 @@ public class Inv implements Listener {
 		ItemMeta avatarMeta = guardian.getItemMeta();
 		avatarMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&4Avatar"));
 		ArrayList<String> avatarLore = new ArrayList<String>();
-		avatarLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $10,000,000"));
+		avatarLore.add(ChatColor.translateAlternateColorCodes('&', getCost(slot,10)));
 		avatarMeta.setLore(avatarLore);
 		if (getGroup(player).equalsIgnoreCase("Avatar")) {
 			avatarMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -153,6 +165,24 @@ public class Inv implements Listener {
 		I.setItem(8, avatar);
 		
 		player.openInventory(I);
+	}
+	
+	public String getCost(int slot, int clickSlot) {
+		List<Integer> rankCost = plugin.getConfig().getIntegerList("rank_cost");
+		int cost = 0;
+		if (clickSlot < slot) {
+			return "&cUghie";
+		}
+		else if (clickSlot == slot) {
+			return "You are dis rank already";
+		}
+		else {
+			for (int i = slot + 1; i <= clickSlot; i++) {
+				cost += rankCost.get(i);
+			}
+			String usd = String.format("%,d", cost);
+			return ("&eCost: $" + usd);
+		}
 	}
 	
 	String getGroup(Player player) {

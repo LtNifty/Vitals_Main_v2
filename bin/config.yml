@@ -16,6 +16,19 @@ Play_time: false
 wanderer_time: 120
 veteran_time: 50
 
+rank_cost:
+    - 0
+    - 0
+    - 10000
+    - 25000
+    - 50000
+    - 100000
+    - 250000
+    - 500000
+    - 1000000
+    - 2500000
+    - 10000000
+
 Ranks:
     - Wanderer
     - Citizen

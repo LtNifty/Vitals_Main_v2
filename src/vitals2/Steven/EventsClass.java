@@ -303,24 +303,17 @@ public class EventsClass implements Listener {
 	@EventHandler
 	public void anything(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
-		String name = "&a&lBuyrank Menu";
+		String name = "&d&lBuyrank Menu";
 		Inventory open = event.getInventory();
 		ItemStack item = event.getCurrentItem();
-		int slot = 100;
+		 int slot = 100, clickSlot = 100;
 		if (open.getName().equals(ChatColor.translateAlternateColorCodes('&', name))) {
 			if (item != null && item.getType() != Material.AIR && item.hasItemMeta()) {
-				List<String> rankList = plugin.getConfig().getStringList("Ranks");
-				for (int i = 0; i < rankList.size(); i++) {
-					if (rankList.get(i).equalsIgnoreCase(getGroup(player))) {
-						slot = i;
-						break;
-					}
-				}
-				String test = item.getItemMeta().getDisplayName().toString();
-//				player.sendMessage(test.substring(2, test.length()));	//inside the () is the actual name of the rank without formatting
+				item.getItemMeta().getLore();
 			}
 		}
 	}
+	
 	
 	String getGroup(Player player) {
         if (player.hasPermission("wanderer.v")) {
