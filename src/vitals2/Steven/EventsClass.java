@@ -19,10 +19,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -297,6 +299,66 @@ public class EventsClass implements Listener {
 			}
 		}
 	}
+	
+	@EventHandler
+	public void anything(InventoryClickEvent event) {
+		Player player = (Player) event.getWhoClicked();
+		String name = "&a&lBuyrank Menu";
+		Inventory open = event.getInventory();
+		ItemStack item = event.getCurrentItem();
+		int slot = 100;
+		if (open.getName().equals(ChatColor.translateAlternateColorCodes('&', name))) {
+			if (item != null && item.getType() != Material.AIR && item.hasItemMeta()) {
+				List<String> rankList = plugin.getConfig().getStringList("Ranks");
+				for (int i = 0; i < rankList.size(); i++) {
+					if (rankList.get(i).equalsIgnoreCase(getGroup(player))) {
+						slot = i;
+						break;
+					}
+				}
+				String test = item.getItemMeta().getDisplayName().toString();
+				player.sendMessage("" + test);
+			}
+		}
+	}
+	
+	String getGroup(Player player) {
+        if (player.hasPermission("wanderer.v")) {
+            return "Wanderer";
+        }
+        else if (player.hasPermission("citizen.v")) {
+            return "Citizen";
+        }
+        else if (player.hasPermission("noble.v")) {
+            return "Noble";
+        }
+        else if (player.hasPermission("merchant.v")) {
+            return "Merchant";
+        }
+        else if (player.hasPermission("knight.v")) {
+            return "Knight";
+        }
+        else if (player.hasPermission("baron.v")) {
+            return "Baron";
+        }
+        else if (player.hasPermission("duke.v")) {
+            return "Duke";
+        }
+        else if (player.hasPermission("chancellor.v")) {
+            return "Chancellor";
+        }
+        else if (player.hasPermission("viceroy.v")) {
+            return "Viceroy";
+        }
+        else if (player.hasPermission("guardian.v")) {
+            return "Guardian";
+        }
+        else if (player.hasPermission("avatar.v")) {
+            return "Avatar";
+        }
+        else
+            return "Unknown";
+    }
 	
 	/*@EventHandler
 	public void zoneMove(PlayerMoveEvent event) {

@@ -108,7 +108,7 @@ public class Inv implements Listener {
 		
 		// Creates wool for Viceroy
 		ItemMeta viceroyMeta = viceroy.getItemMeta();
-		viceroyMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&vViceroy"));
+		viceroyMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bViceroy"));
 		ArrayList<String> viceroyLore = new ArrayList<String>();
 		viceroyLore.add(ChatColor.translateAlternateColorCodes('&', "&eCost: $1,000,000"));
 		viceroyMeta.setLore(viceroyLore);
