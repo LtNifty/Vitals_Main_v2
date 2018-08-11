@@ -317,7 +317,7 @@ public class EventsClass implements Listener {
 					}
 				}
 				String test = item.getItemMeta().getDisplayName().toString();
-				player.sendMessage("" + test);
+//				player.sendMessage(test.substring(2, test.length()));	//inside the () is the actual name of the rank without formatting
 			}
 		}
 	}
