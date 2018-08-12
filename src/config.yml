@@ -29,6 +29,11 @@ rank_cost:
     - 2500000
     - 10000000
 
+donate_cost:
+    - 5
+    - 10
+    - 20
+
 Ranks:
     - Wanderer
     - Citizen

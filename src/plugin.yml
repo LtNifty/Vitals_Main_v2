@@ -20,6 +20,9 @@ commands:
  playtime:
   usage: /<command>
   description: shows the players playtime
+ donate:
+  usage: /<command>
+  description: allows the player to rank to the next donator rank
 permissions:
  featherfly.v:
   description: Allows featherfly

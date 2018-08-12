@@ -17,6 +17,86 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Inv implements Listener {
 	private Main plugin = Main.getPlugin(Main.class);
 	
+	/*
+	 * Method that creates the GUI
+	 * when a player does /donate
+	 */
+	public void donateInventory(Player player) {
+		int slot = 100;
+		
+		List<String> rankList = plugin.getConfig().getStringList("Sub_Ranks");
+		for (int i = 0; i < rankList.size(); i++) {
+			if (rankList.get(i).equalsIgnoreCase(getGroup(player))) {
+				slot = i;
+				break;
+			}
+		}
+		
+		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
+		ItemMeta eMeta = empty.getItemMeta();
+		eMeta.setDisplayName(ChatColor.GRAY + " ");
+		empty.setItemMeta(eMeta);
+		
+		String name = "&d&lDonation Menu";
+		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name));
+		
+		ItemStack sapphire = new ItemStack(Material.WOOL,1,(byte) 11);
+		ItemStack ruby = new ItemStack(Material.WOOL,1,(byte) 14);
+		ItemStack dragonstone = new ItemStack(Material.WOOL,1,(byte) 10);
+		
+		// Creates wool for Sapphire
+		ItemMeta sapphireMeta = sapphire.getItemMeta();
+		sapphireMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&1&lSapphire"));
+		ArrayList<String> sapphireLore = new ArrayList<String>();
+		sapphireLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 3)));
+		sapphireMeta.setLore(sapphireLore);
+		if (getGroup(player).equalsIgnoreCase("Sapphire")) {
+			sapphireMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+			sapphireMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		sapphire.setItemMeta(sapphireMeta);
+		
+		// Creates wool for Ruby
+		ItemMeta rubyMeta = ruby.getItemMeta();
+		rubyMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&4&lRuby"));
+		ArrayList<String> rubyLore = new ArrayList<String>();
+		rubyLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 4)));
+		rubyMeta.setLore(rubyLore);
+		if (getGroup(player).equalsIgnoreCase("Ruby")) {
+			rubyMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+			rubyMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		ruby.setItemMeta(rubyMeta);
+		
+		// Creates wool for Dragonstone
+		ItemMeta dragonstoneMeta = ruby.getItemMeta();
+		dragonstoneMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5&lDragonstone"));
+		ArrayList<String> dragonstoneLore = new ArrayList<String>();
+		dragonstoneLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 5)));
+		dragonstoneMeta.setLore(dragonstoneLore);
+		if (getGroup(player).equalsIgnoreCase("Dragonstone")) {
+			dragonstoneMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+			dragonstoneMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		ruby.setItemMeta(dragonstoneMeta);
+		
+		I.setItem(0, empty);
+		I.setItem(1, empty);
+		I.setItem(2, empty);
+		I.setItem(3, sapphire);
+		I.setItem(4, ruby);
+		I.setItem(5, dragonstone);
+		I.setItem(6, empty);
+		I.setItem(7, empty);
+		I.setItem(8, empty);
+		
+		player.openInventory(I);
+	}
+	
+	/*
+	 * Method that creates the GUI
+	 * when a player does /buyrank
+	 */
 	public void BuyrankInventory(Player player) {
 		
 		int slot = 100;
@@ -31,10 +111,6 @@ public class Inv implements Listener {
 		
 		String name = "&d&lBuyrank Menu";
 		Inventory I = plugin.getServer().createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', name));
-		ItemStack empty = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 0);
-		ItemMeta eMeta = empty.getItemMeta();
-		eMeta.setDisplayName(ChatColor.GRAY + " ");
-		empty.setItemMeta(eMeta);
 		
 		ItemStack noble = new ItemStack(Material.WOOL,1,(byte) 4);
 		ItemStack merchant = new ItemStack(Material.WOOL,1,(byte) 1);
@@ -249,10 +325,28 @@ public class Inv implements Listener {
 		List<Integer> rankCost = plugin.getConfig().getIntegerList("rank_cost");
 		int cost = 0;
 		if (clickSlot < slot) {
-			return "&cUghie";
+			return "&cYou have already surpassed this rank!";
 		}
 		else if (clickSlot == slot) {
-			return "You are dis rank already";
+			return "&bYour current rank";
+		}
+		else {
+			for (int i = slot + 1; i <= clickSlot; i++) {
+				cost += rankCost.get(i);
+			}
+			String usd = String.format("%,d", cost);
+			return ("&eCost: $" + usd);
+		}
+	}
+	
+	public String getDonateCost(int slot, int clickSlot) {
+		List<Integer> rankCost = plugin.getConfig().getIntegerList("donate_cost");
+		int cost = 0;
+		if (clickSlot < slot) {
+			return "&cYou have already surpassed this rank!";
+		}
+		else if (clickSlot == slot) {
+			return "Your current rank";
 		}
 		else {
 			for (int i = slot + 1; i <= clickSlot; i++) {

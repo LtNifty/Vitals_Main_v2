@@ -25,6 +25,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 	public String cmd3 = "buyrank";
 	public String cmd4 = "V_reload";
 	public String cmd5 = "playtime";
+	public String cmd6 = "donate";
 	
 	public String noPerms = "You do not have permission to run this command.";
 	
@@ -103,6 +104,11 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd5)) {
 				getTime((Player) sender);
+				return true;
+			}
+			if (cmd.getName().equalsIgnoreCase(cmd6)) {
+				Inv I = new Inv();
+				I.donateInventory((Player) sender);
 				return true;
 			}
 		}
