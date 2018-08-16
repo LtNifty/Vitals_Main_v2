@@ -48,7 +48,7 @@ public class Inv implements Listener {
 		ItemMeta sapphireMeta = sapphire.getItemMeta();
 		sapphireMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&1&lSapphire"));
 		ArrayList<String> sapphireLore = new ArrayList<String>();
-		sapphireLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 3)));
+		sapphireLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 0)));
 		sapphireMeta.setLore(sapphireLore);
 		if (getGroup(player).equalsIgnoreCase("Sapphire")) {
 			sapphireMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -60,7 +60,7 @@ public class Inv implements Listener {
 		ItemMeta rubyMeta = ruby.getItemMeta();
 		rubyMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&4&lRuby"));
 		ArrayList<String> rubyLore = new ArrayList<String>();
-		rubyLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 4)));
+		rubyLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 1)));
 		rubyMeta.setLore(rubyLore);
 		if (getGroup(player).equalsIgnoreCase("Ruby")) {
 			rubyMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
@@ -72,7 +72,7 @@ public class Inv implements Listener {
 		ItemMeta dragonstoneMeta = ruby.getItemMeta();
 		dragonstoneMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5&lDragonstone"));
 		ArrayList<String> dragonstoneLore = new ArrayList<String>();
-		dragonstoneLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 5)));
+		dragonstoneLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 2)));
 		dragonstoneMeta.setLore(dragonstoneLore);
 		if (getGroup(player).equalsIgnoreCase("Dragonstone")) {
 			dragonstoneMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);

@@ -45,6 +45,7 @@ public class Main extends JavaPlugin {
 		getCommand(commands.cmd3).setExecutor(commands);
 		getCommand(commands.cmd4).setExecutor(commands);
 		getCommand(commands.cmd5).setExecutor(commands);
+		getCommand(commands.cmd6).setExecutor(commands);
 		getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Vitals has be enabled.");
 		getServer().getPluginManager().registerEvents(new EventsClass(this), this);
 		timer();
