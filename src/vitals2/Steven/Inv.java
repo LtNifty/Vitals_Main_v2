@@ -97,7 +97,7 @@ public class Inv implements Listener {
 	 * Method that creates the GUI
 	 * when a player does /buyrank
 	 */
-	public void BuyrankInventory(Player player) {
+	public void buyrankInventory(Player player) {
 		
 		int slot = 100;
 		

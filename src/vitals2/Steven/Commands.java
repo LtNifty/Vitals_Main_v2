@@ -94,7 +94,7 @@ public class Commands extends CommandExecute implements Listener, CommandExecuto
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd3)) {
 					Inv I = new Inv();
-					I.BuyrankInventory((Player) sender);
+					I.buyrankInventory((Player) sender);
 					return true;
 			}
 			if (cmd.getName().equalsIgnoreCase(cmd4)) {
