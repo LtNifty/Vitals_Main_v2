@@ -26,7 +26,7 @@ public class Inv implements Listener {
 		
 		List<String> rankList = plugin.getConfig().getStringList("Sub_Ranks");
 		for (int i = 0; i < rankList.size(); i++) {
-			if (rankList.get(i).equalsIgnoreCase(getGroup(player))) {
+			if (rankList.get(i).equalsIgnoreCase(supergroupTag(player))) {
 				slot = i;
 				break;
 			}
@@ -355,6 +355,36 @@ public class Inv implements Listener {
 			String usd = String.format("%,d", cost);
 			return ("&eCost: $" + usd);
 		}
+	}
+	
+	String supergroupTag(Player player) {
+		String tag = "";
+		if (player.hasPermission("owner.v")) {
+			return "Owner";
+		}
+		else if (player.hasPermission("admin.v")) {
+			return "Admin";
+		}
+		else if (player.hasPermission("mod.v")) {
+			return "Mod";
+		}
+		else if (player.hasPermission("trusted.v")) {
+			return "Trusted";
+		}
+		else if (player.hasPermission("sapphire.v")) {
+			return "Sapphire";
+		}
+		else if (player.hasPermission("ruby.v")) {
+			return "Ruby";
+		}
+		else if (player.hasPermission("drangonstone.v")) {
+			return "Dragonstone";
+		}
+		else if (player.hasPermission("veteran.v")) {
+			return "Veteran";
+		}
+		else
+			return "Unknown";
 	}
 	
 	String getGroup(Player player) {
