@@ -69,7 +69,7 @@ public class Inv implements Listener {
 		ruby.setItemMeta(rubyMeta);
 		
 		// Creates wool for Dragonstone
-		ItemMeta dragonstoneMeta = ruby.getItemMeta();
+		ItemMeta dragonstoneMeta = dragonstone.getItemMeta();
 		dragonstoneMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5&lDragonstone"));
 		ArrayList<String> dragonstoneLore = new ArrayList<String>();
 		dragonstoneLore.add(ChatColor.translateAlternateColorCodes('&', getDonateCost(slot, 2)));
@@ -78,7 +78,7 @@ public class Inv implements Listener {
 			dragonstoneMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
 			dragonstoneMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		}
-		ruby.setItemMeta(dragonstoneMeta);
+		dragonstone.setItemMeta(dragonstoneMeta);
 		
 		I.setItem(0, empty);
 		I.setItem(1, empty);
